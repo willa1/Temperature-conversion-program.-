@@ -1,68 +1,88 @@
 #include <iostream>
 #include <stdlib.h>
+#include <cctype>
+
+
 using namespace std;
 int main(){
 
-  char escolha;
-  char opc;
+    char escolha;
+    char opc;
+  
+    do {
+        // This shoud work on any unix based system and is better than forking another process
+        printf("\033[H\033[J"); // Clear the screen
 
-  inicio:
-  system("clear");
+        cout << "Made by Willa Cantanhede P. de Brito\n";
+        cout << "\n- [A-> Celsius to Fahrenheit]\n- [B-> Fahrenheit to Celsius]\n- [C-> Kelvin to Celsius]\n- [D-> Kelvin to Fahrenheit]\n- [E-> Celsius to Kelvin]\n- [F-> Fahrenheit to Kelvin]";
+        cout << "\n-> Please choose only one option: ";
+        cin >> escolha;
 
-    cout << "Made by Willa Cantanhede P. de Brito\n";
-    cout << "\n- [A-> Celsius to Fahrenheit]\n- [B-> Fahrenheit to Celsius]\n- [C-> Kelvin to Celsius]\n- [D-> Kelvin to Fahrenheit]\n- [E-> Celsius to Kelvin]\n- [F-> Fahrenheit to Kelvin]";
-    cout << "\n-> Please choose only one option: ";
-      cin >> escolha;
+        switch (std::tolower(escolha)) {
+            case 'a': {
+                double c, f;
+                cout << "\n-Enter the temperature in Celsius: ";
+                cin >> c;
+                f = (1.8 * c) + 32;
+                cout << "-The result in Fahrenheit is: " << f;
+                break;
+            }
+            
+            case 'b': {
+                double cc, ff;
+                cout << "\n-Enter the temperature in Farenheit: ";
+                cin >> ff;
+                cc=(ff-32)/1.8;
+                cout << "-The result in Celsius is: " << cc;
+                break;
+            }
+            
+            case 'c': {
+                double k, ccc;
+                cout << "\n-Enter the temperature in Kelvin: ";
+                cin >> k;
+                ccc = k-273.15;
+                cout << "-The result in Celsius is: " << ccc; 
+                break;
+            }
+            
+            case 'd': {
+                double fff, kk;
+                cout << "\n-Enter the temperature in Kelvin: ";
+                cin >> kk;
+                fff=kk*9/5-459.67;
+                cout << "-The result in Farenheit is: " << fff;
+                break;
+            }
+            
+            case 'e': {
+                double cccc, kkk;
+                cout << "\n-Enter the temperature in Celsius: ";
+                cin >> cccc;
+                kkk=cccc+273.15;
+                cout << "-The result in Kelvin is: " << kkk;
+                break;
+            }
 
-      if(escolha=='A' || escolha=='a'){
-        double c, f;
-          cout << "\n-Enter the temperature in Celsius: ";
-            cin >> c;
-            f=(1.8*c)+32;
-          cout << "-The result in Fahrenheit is: " << f;
+            case 'f': {
+                double ffff, kkkk;
+                cout << "\n-Enter the temperature in Farenheit: ";
+                cin >> ffff;
+                kkkk=(ffff+459.67)*5/9;
+                cout << "-The result in Kelvin is: " << kkkk;
+                break;
+            }
 
-    }else if(escolha=='B' || escolha=='b'){
-        double cc, ff;
-          cout << "\n-Enter the temperature in Farenheit: ";
-            cin >> ff;
-            cc=(ff-32)/1.8;
-          cout << "-The result in Celsius is: " << cc;
+            default: 
+                cout << "Invalid option: " << escolha;
+            break;
 
-    }else if(escolha=='C' || escolha=='c'){
-        double k, ccc;
-          cout << "\n-Enter the temperature in Kelvin: ";
-            cin >> k;
-            ccc=k-273.15;
-            cout << "-The result in Celsius is: " << ccc;
-
-    }else if(escolha=='D' || escolha=='d'){
-      double fff, kk;
-        cout << "\n-Enter the temperature in Kelvin: ";
-          cin >> kk;
-          fff=kk*9/5-459.67;
-          cout << "-The result in Farenheit is: " << fff;
-
-    }else if(escolha=='E' || escolha=='e'){
-      double cccc, kkk;
-        cout << "\n-Enter the temperature in Celsius: ";
-          cin >> cccc;
-          kkk=cccc+273.15;
-          cout << "-The result in Kelvin is: " << kkk;
-
-    }else if(escolha=='F' || escolha=='f'){
-      double ffff, kkkk;
-        cout << "\n-Enter the temperature in Farenheit: ";
-          cin >> ffff;
-          kkkk=(ffff+459.67)*5/9;
-          cout << "-The result in Kelvin is: " << kkkk;
-
-    }
-
-      cout << "\n\n-Return to the menu[Y/n]: ";
-        cin >> opc;
-        if(opc=='Y' || opc=='y'){
-          goto inicio;
         }
 
-  return 0;
+        cout << "\n\n-Return to the menu[Y/n]: ";
+        cin >> opc;
+
+    while (std::tolower(opc) != 'y');
+    
+    return 0;
 }

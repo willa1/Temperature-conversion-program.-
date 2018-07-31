@@ -1,5 +1,4 @@
 //Thanks Artur Paiva.
-//I had already made use of the "switch case" before, but did not know how to loop with the "do while".
 #include <iostream>
 #include <cctype>
 using namespace std;
